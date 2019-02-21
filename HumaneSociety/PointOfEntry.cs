@@ -10,7 +10,7 @@ namespace HumaneSociety
     {
         public static void Run()
         {
-            List<string> options = new List<string>() { "Hello welcome to the Humane Society! Are you a(n):", "1. Employee", "2. Customer" };
+            List<string> options = new List<string>() { "Hello. Welcome to the Humane Society! Are you a(n):", "1. Employee", "2. Customer" };
             UserInterface.DisplayUserOptions(options);
             string userInput = UserInterface.GetUserInput();
             RunUserInput(userInput);
