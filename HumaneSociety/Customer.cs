@@ -98,7 +98,7 @@ namespace HumaneSociety
                 UserInterface.DisplayUserOptions("Several animals found");
                 UserInterface.DisplayAnimals(animals);
             }
-            else if(animals.Count == 0)
+            else if(animals.Count = 0)
             {
                 UserInterface.DisplayUserOptions("No animals found please try another search");
             }

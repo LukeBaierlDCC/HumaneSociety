@@ -8,10 +8,10 @@ namespace HumaneSociety
 {
     public static class Query
     {
-
+        private  static HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
         internal static List<USState> GetStates()
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
 
             List<USState> allStates = db.USStates.ToList();
 
@@ -20,16 +20,16 @@ namespace HumaneSociety
 
         internal static Client GetClient(string userName, string password)
         {
-            // HumaneSocietyDataContext db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
 
-            Client client = db.Clients.Where(c => c.Username == userName && c.Password == password).Single();
+            Client client = db.Clients.Where(c => c.UserName == userName && c.Password == password).Single();
 
             return client;
         }
 
         internal static List<Client> GetClients()
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext  db = new HumaneSocietyDCCDataContext();
 
             List<Client> allClients = db.Clients.ToList();
 
@@ -38,7 +38,7 @@ namespace HumaneSociety
 
         internal static void AddNewClient(string firstName, string lastName, string username, string password, string email, string streetAddress, int zipCode, int stateId)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext  db = new HumaneSocietyDCCDataContext();
 
             Client newClient = new Client();
 
@@ -75,7 +75,7 @@ namespace HumaneSociety
 
         internal static void UpdateClient(Client clientWithUpdates)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            
 
             // find corresponding Client from Db
             Client clientFromDb = db.Clients.Where(c => c.ClientId == clientWithUpdates.ClientId).Single();
@@ -115,9 +115,35 @@ namespace HumaneSociety
             db.SubmitChanges();
         }
 
+        public static Animal GetAnimalByID(int id)
+        {
+
+            Animal myAnimal = db.Animals.Where(s => s.AnimalId == id).Single();
+            return myAnimal;
+        }
+
+        static void RunEmployeeQueries(Employee employee, string v)
+        {
+            throw new NotImplementedException();
+        }
+
+        static Room GetRoom(int animalId)
+        {
+            throw new NotImplementedException();
+        }
+
+        static object SearchForAnimalByMultipleTraits()
+        {
+            throw new NotImplementedException();
+        }
+        
+        public static void AddAnimal(Animal animal)
+        {
+
+        }
         internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext  db = new HumaneSocietyDCCDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.Email == email && e.EmployeeNumber == employeeNumber).FirstOrDefault();
 
@@ -133,7 +159,7 @@ namespace HumaneSociety
 
         internal static Employee EmployeeLogin(string userName, string password)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext  db = new HumaneSocietyDCCDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.UserName == userName && e.Password == password).FirstOrDefault();
 
@@ -142,7 +168,7 @@ namespace HumaneSociety
 
         internal static bool CheckEmployeeUserNameExist(string userName)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext  db = new HumaneSocietyDCCDataContext();
 
             Employee employeeWithUserName = db.Employees.Where(e => e.UserName == userName).FirstOrDefault();
 
@@ -151,7 +177,7 @@ namespace HumaneSociety
 
         internal static void AddUsernameAndPassword(Employee employee)
         {
-            // HumaneSocietyDataContext  db = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext  db = new HumaneSocietyDCCDataContext();
 
             Employee employeeFromDb = db.Employees.Where(e => e.EmployeeId == employee.EmployeeId).FirstOrDefault();
 
