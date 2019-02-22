@@ -115,7 +115,7 @@ namespace HumaneSociety
             db.SubmitChanges();
         }
 
-        public static void GetPendingAdoptions()
+        public static List<Adoption> GetPendingAdoptions()
         {
             throw new NotImplementedException();
         }
@@ -142,10 +142,10 @@ namespace HumaneSociety
             return myAnimal;
         }
 
-        static void RunEmployeeQueries(Employee employee, string v)
-        {
-            throw new NotImplementedException();
-        }
+        //static void RunEmployeeQueries(Employee employee, string v)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public static void Adopt(Animal animal, Client client)
         {
