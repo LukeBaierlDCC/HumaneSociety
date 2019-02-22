@@ -120,7 +120,7 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static void RunEmployeeQueries(Employee employee)
+        public static void RunEmployeeQueries(Employee employee, Update update)
         {
             throw new NotImplementedException();
         }
@@ -156,9 +156,10 @@ namespace HumaneSociety
         {
             throw new NotImplementedException();
         }
-        static Room GetRoom(int animalId)
+        public static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            Room room = db.Rooms.Where(r=>r.AnimalId == animalId).Single();
+            return room;
         }
         public static void UpdateShot(string shot, Animal animal)
         {
