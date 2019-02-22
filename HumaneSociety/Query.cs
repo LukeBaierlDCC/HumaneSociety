@@ -120,7 +120,7 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static void RunEmployeeQueries(Employee employee, Update update)
+        public static void RunEmployeeQueries(Employee employee, string update)
         {
             throw new NotImplementedException();
         }
@@ -152,7 +152,7 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        internal static object GetShots(Animal animal)
+        public static List<AnimalShot>GetShots(Animal animal)
         {
             throw new NotImplementedException();
         }
@@ -161,6 +161,7 @@ namespace HumaneSociety
             Room room = db.Rooms.Where(r=>r.AnimalId == animalId).Single();
             return room;
         }
+
         public static void UpdateShot(string shot, Animal animal)
         {
             throw new NotImplementedException();
@@ -180,12 +181,12 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static void GetCategoryId(Animal animal)
+        public static int GetCategoryId()
         {
             throw new NotImplementedException();
         }
 
-        public static void GetDietPlanId(Animal animal)
+        public static int GetDietPlanId(Animal animal)
         {
             throw new NotImplementedException();
         }

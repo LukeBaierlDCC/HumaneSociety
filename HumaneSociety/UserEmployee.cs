@@ -158,7 +158,7 @@ namespace HumaneSociety
         {
             List<string> shotInfo = new List<string>();
             var shots = Query.GetShots(animal);
-            foreach(AnimalShot shot in shots.ToList())
+            foreach(AnimalShot shot in shots)
             {
                 shotInfo.Add($"{shot.Shot.Name} Date: {shot.DateReceived}");
             }
@@ -253,7 +253,7 @@ namespace HumaneSociety
             animal.KidFriendly = UserInterface.GetBitData("the animal", "child friendly");
             animal.PetFriendly = UserInterface.GetBitData("the animal", "pet friendly");
             animal.Weight = UserInterface.GetIntegerData("the animal", "the weight of the");
-            animal.DietPlanId = Query.GetDietPlanId();
+            animal.DietPlanId = Query.GetDietPlanId(animal);
             Query.AddAnimal(animal);
         }
         protected override void LogInPreExistingUser()
