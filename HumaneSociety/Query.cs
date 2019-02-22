@@ -115,6 +115,26 @@ namespace HumaneSociety
             db.SubmitChanges();
         }
 
+        public static void GetPendingAdoptions()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void RunEmployeeQueries(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+                
+        public static List<Animal> SearchForAnimalByMultipleTraits()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void UpdateAdoption(bool v, Adoption adoption)
+        {
+            throw new NotImplementedException();
+        }
+
         public static Animal GetAnimalByID(int id)
         {
 
@@ -127,16 +147,48 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        static Room GetRoom(int animalId)
+        public static void Adopt(Animal animal, Client client)
         {
             throw new NotImplementedException();
         }
 
-        static object SearchForAnimalByMultipleTraits()
+        internal static object GetShots(Animal animal)
         {
             throw new NotImplementedException();
         }
-        
+        static Room GetRoom(int animalId)
+        {
+            throw new NotImplementedException();
+        }
+        public static void UpdateShot(string shot, Animal animal)
+        {
+            throw new NotImplementedException();
+        }
+
+        //static object SearchForAnimalByMultipleTraits()
+        //{
+        //    throw new NotImplementedException();
+        //}
+        public static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
+        {
+            throw new NotImplementedException();
+        }
+ 
+        public static void RemoveAnimal(Animal animal)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void GetCategoryId(Animal animal)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void GetDietPlanId(Animal animal)
+        {
+            throw new NotImplementedException();
+        }
+
         public static void AddAnimal(Animal animal)
         {
 

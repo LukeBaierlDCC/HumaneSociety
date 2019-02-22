@@ -154,11 +154,8 @@ namespace HumaneSociety
                     return;
             }
         }
-
         private void CheckShots(Animal animal)
         {
-
-            shots.GetShots();
             List<string> shotInfo = new List<string>();
             var shots = Query.GetShots(animal);
             foreach(AnimalShot shot in shots.ToList())
@@ -217,7 +214,7 @@ namespace HumaneSociety
 
         private IQueryable<Animal> SearchForAnimal(int iD)
         {
-            HumaneSocietyDataContext context = new HumaneSocietyDataContext();
+            HumaneSocietyDCCDataContext context = new HumaneSocietyDCCDataContext();
             var animals = (from animal in context.Animals where animal.AnimalId == iD select animal);
             return animals;
         }       
