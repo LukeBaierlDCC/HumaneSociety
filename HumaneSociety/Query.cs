@@ -181,21 +181,22 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
 
-        public static int GetCategoryId(string animalName)
+        public static int GetCategoryId(Animal animalName)
         {
-            Category category = db.Categories.Where(c => c.Name == animalName).Single();
+            Category category = db.Categories.Where(c => c.Name == animalName.Name).Single();
             return category.CategoryId;
         }
 
-        public static int GetDietPlanId(int dietPlan)
+        public static int GetDietPlanId(Animal animalDietPlan)
         {
-            DietPlan diet = db.DietPlans.Where(d => d.DietPlanId == dietPlan).Single();
+            DietPlan diet = db.DietPlans.Where(d => d.DietPlanId == animalDietPlan.DietPlanId).Single();
+            //table, variable, = -----------------------------------our own name...of type----number of items
             return diet.DietPlanId;
         }
 
-        public static int AddAnimal(int animalId)
+        public static int AddAnimal(Animal animalId)
         {
-            Animal animal = db.Animals.Where(a => a.AnimalId == animalId).Single();
+            Animal animal = db.Animals.Where(a => a.AnimalId == animalId.AnimalId).Single();
             return animal.AnimalId;
         }
         internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
