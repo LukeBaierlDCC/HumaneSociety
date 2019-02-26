@@ -63,7 +63,7 @@ namespace HumaneSociety
             Console.Clear();
             List<string> adoptionInfo = new List<string>();
             int counter = 1;
-            var adoptions = Query.GetPendingAdoptions().ToList();
+            var adoptions = Query.GetPendingAdoptions("pending");
             if(adoptions.Count > 0)
             {
                 foreach(Adoption adoption in adoptions)
@@ -158,7 +158,7 @@ namespace HumaneSociety
         {
             List<string> shotInfo = new List<string>();
             var shots = Query.GetShots(animal);
-            foreach(AnimalShot shot in shots)
+            foreach (var shot in shotInfo)
             {
                 shotInfo.Add($"{shot.Shot.Name} Date: {shot.DateReceived}");
             }

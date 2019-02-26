@@ -115,23 +115,23 @@ namespace HumaneSociety
             db.SubmitChanges();
         }
 
-        public static Animal GetPendingAdoptions(string pendingAdoption)
+        public static List<Adoption> GetPendingAdoptions(string pendingAdoption)
         {
-            Animal adoptionPending = db.Animals.Where(pd => pd.AdoptionStatus == pendingAdoption).Single();
-            return adoptionPending;
+            var adoptionPending = db.Adoptions.Where(pd => pd.ApprovalStatus == pendingAdoption).ToList();
+           return adoptionPending;
             //throw new NotImplementedException();
         }
 
         public static Employee RunEmployeeQueries(Employee employee, string update)
         {
-            Employee employeeQueries = db.Employees.Where(eq => eq.EmployeeId == update ).Single();
+            Employee employeeQueries = db.Employees.Where(eq => eq.EmployeeId == update).Single();
             return employeeQueries;
             //throw new NotImplementedException();
         }
                 
-        public static Animal SearchForAnimalByMultipleTraits(Animal animal)
+        public static List<Animal> SearchForAnimalByMultipleTraits(Animal animal)
         {
-            Animal multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).Single();
+            var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).ToList() ;
             //List<Animal> animalsFound = new List<Animal>();
 
             return multipleTraits;
@@ -141,8 +141,6 @@ namespace HumaneSociety
         {
             Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).Single();
             //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).SingleOrDefault();
-
-
             //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).First();
             //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).FirstOrDefault();
 
@@ -174,18 +172,21 @@ namespace HumaneSociety
 
         public static void Adopt(Animal animal, Client client)
         {
-
-            throw new NotImplementedException();
+            Adoption adoptNew = db.Adoptions.Where(a => a.AnimalId == animal.AnimalId).Single();
+            adoptNew.ClientId = client.ClientId;
+            //throw new NotImplementedException();
         }
 
-        public static List<AnimalShot>GetShots(Animal animal)
+        public static Shot GetShots(Shot shot)
         {
+            var newShots = db.Shots.Where(s => s.ShotId == shot.ShotId).Single();
+            return newShots;
 
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
         public static Room GetRoom(int animalId)
         {
-            Room room = db.Rooms.Where(r=>r.AnimalId == animalId).Single();
+            Room room = db.Rooms.Where(r=> r.AnimalId == animalId).Single();
             return room;
         }
 
@@ -196,12 +197,10 @@ namespace HumaneSociety
             //throw new NotImplementedException();
         }
 
-        //static object SearchForAnimalByMultipleTraits()
-        //{
-        //    throw new NotImplementedException();
-        //}
         public static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
+            var animalUpdate = db.Animals.Where(a => a.AnimalId == animal.AnimalId).Single();
+            
 
             //throw new NotImplementedException();
         }
