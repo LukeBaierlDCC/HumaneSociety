@@ -125,17 +125,36 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
                 
-        public static List<Animal> SearchForAnimalByMultipleTraits(Animal animal)
+        public static Animal SearchForAnimalByMultipleTraits(Animal animal)
         {
-            Animal multipleTraits = db.Animals.Where(m => m.AnimalId == animal.AnimalId).Single(); 
-            List<Animal> animalsFound = new List<Animal>();
-            Animal name = db.Animals.Where(n => n.Animals());
-            return animalsFound;
+            Animal multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).Single();
+            //List<Animal> animalsFound = new List<Animal>();
+
+            return multipleTraits;
         }
 
-        public static void UpdateAdoption(bool v, Adoption adoption)
+        public static Adoption UpdateAdoption(bool isAdopting, Adoption adoption)
         {
-            throw new NotImplementedException();
+            Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).Single();
+            //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).SingleOrDefault();
+
+
+            //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).First();
+            //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).FirstOrDefault();
+
+            if (isAdopting == true)
+            {
+                adoptionUpdate.ApprovalStatus = "adopt";
+
+            }
+            else
+            {
+                adoptionUpdate.ApprovalStatus = "NO";
+
+            }
+
+            return adoptionUpdate;
+            //throw new NotImplementedException();
         }
 
         public static Animal GetAnimalByID(int id)
