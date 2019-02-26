@@ -125,9 +125,12 @@ namespace HumaneSociety
             throw new NotImplementedException();
         }
                 
-        public static List<Animal> SearchForAnimalByMultipleTraits()
+        public static List<Animal> SearchForAnimalByMultipleTraits(Animal animal)
         {
-            throw new NotImplementedException();
+            Animal multipleTraits = db.Animals.Where(m => m.AnimalId == animal.AnimalId).Single(); 
+            List<Animal> animalsFound = new List<Animal>();
+            Animal name = db.Animals.Where(n => n.Animals());
+            return animalsFound;
         }
 
         public static void UpdateAdoption(bool v, Adoption adoption)
