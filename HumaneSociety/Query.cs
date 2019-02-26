@@ -117,11 +117,13 @@ namespace HumaneSociety
 
         public static List<Adoption> GetPendingAdoptions()
         {
+
             throw new NotImplementedException();
         }
 
         public static void RunEmployeeQueries(Employee employee, string update)
         {
+
             throw new NotImplementedException();
         }
                 
@@ -171,11 +173,13 @@ namespace HumaneSociety
 
         public static void Adopt(Animal animal, Client client)
         {
+
             throw new NotImplementedException();
         }
 
         public static List<AnimalShot>GetShots(Animal animal)
         {
+
             throw new NotImplementedException();
         }
         public static Room GetRoom(int animalId)
@@ -184,9 +188,11 @@ namespace HumaneSociety
             return room;
         }
 
-        public static void UpdateShot(string shot, Animal animal)
+        public static Shot UpdateShot(Shot shot)
         {
-            throw new NotImplementedException();
+            Shot shotUpdate = db.Shots.Where(s => s.ShotId == shot.ShotId).Single();
+            return shotUpdate;
+            //throw new NotImplementedException();
         }
 
         //static object SearchForAnimalByMultipleTraits()
@@ -195,12 +201,15 @@ namespace HumaneSociety
         //}
         public static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
-            throw new NotImplementedException();
+
+            //throw new NotImplementedException();
         }
  
-        public static void RemoveAnimal(Animal animal)
+        public static Animal RemoveAnimal(Animal animalId)
         {
-            throw new NotImplementedException();
+            Animal animal = db.Animals.Where(a => a.AnimalId != animalId.AnimalId).Single();
+            return animalId;
+            //throw new NotImplementedException();
         }
 
         public static int GetCategoryId(Animal animalName)
