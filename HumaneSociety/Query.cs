@@ -115,16 +115,18 @@ namespace HumaneSociety
             db.SubmitChanges();
         }
 
-        public static List<Adoption> GetPendingAdoptions()
+        public static Animal GetPendingAdoptions(string pendingAdoption)
         {
-
-            throw new NotImplementedException();
+            Animal adoptionPending = db.Animals.Where(pd => pd.AdoptionStatus == pendingAdoption).Single();
+            return adoptionPending;
+            //throw new NotImplementedException();
         }
 
-        public static void RunEmployeeQueries(Employee employee, string update)
+        public static Employee RunEmployeeQueries(Employee employee, string update)
         {
-
-            throw new NotImplementedException();
+            Employee employeeQueries = db.Employees.Where(eq => eq.EmployeeId == update ).Single();
+            return employeeQueries;
+            //throw new NotImplementedException();
         }
                 
         public static Animal SearchForAnimalByMultipleTraits(Animal animal)
@@ -161,7 +163,6 @@ namespace HumaneSociety
 
         public static Animal GetAnimalByID(int id)
         {
-
             Animal myAnimal = db.Animals.Where(s => s.AnimalId == id).Single();
             return myAnimal;
         }
