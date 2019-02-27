@@ -167,17 +167,25 @@ namespace HumaneSociety
                         var animalDemeanorChoice = Console.ReadLine();
 
                         var refinedDemeanorSearch = from animals in multipleTraits
-                                                where animal.Name == animalDemeanorChoice
+                                                where animal.Demeanor == animalDemeanorChoice
                                                 select animal;
                         multipleTraits = refinedDemeanorSearch.ToList();
                         break;
 
                     case 3:
-                        Console.WriteLine("Enter the gender of the animal you are searching for: [M] or [F] ");
+                        Console.WriteLine("Enter the gender of the animal you are searching for: [F] or [M] ");
                         var animalGenderChoice = Console.ReadLine().ToUpper();
+                        if(animalGenderChoice == "M")
+                        {
+                            animalGenderChoice = "male";
+                        }
+                        else if(animalGenderChoice == "F")
+                        {
+                            animalGenderChoice = "female";
+                        }
 
                         var refinedGenderSearch = from animals in multipleTraits
-                                                where animal.Name == animalGenderChoice
+                                                where animal.Gender == animalGenderChoice
                                                 select animal;
                         multipleTraits = refinedGenderSearch.ToList();
                         break;
@@ -185,10 +193,11 @@ namespace HumaneSociety
                     case 4:
                         Console.WriteLine("Enter the category of the animal you are searching for: ");
                         var animalCategoryChoice = Console.ReadLine();
-
+                        var animalCategory = db.Categories.Where(s => s.Name == animalCategoryChoice).Single();
+                        
                         var refinedCategorySearch = from animals in multipleTraits
-                                                where animal.Name == animalCategoryChoice
-                                                select animal;
+                                                    where animal.CategoryId == animalCategory.CategoryId
+                                                    select animal;
                         multipleTraits = refinedCategorySearch.ToList();
                         break;
 
@@ -222,6 +231,48 @@ namespace HumaneSociety
 
             return multipleTraits;
         }
+
+        //public static void EnterAnimalUpdate(Animal animal)
+        //{
+        //    UserEmployee userEmployee = new UserEmployee();
+        //    int input = UserInterface.GetIntegerData();
+        //    if (input == 1)
+        //    {
+        //        ChangeCategory(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+        //    else if (input == 2)
+        //    {
+        //        ChangeName(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+        //    else if (input == 3)
+        //    {
+        //        ChangeAge(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+        //    else if (input == 4)
+        //    {
+        //        ChangeWeight(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+        //    else if (input == 5)
+        //    {
+        //        ChangeDemeanor(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+        //    else if (input == 6)
+        //    {
+        //        ChangeKidFriendly(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+        //    else if (input == 7)
+        //    {
+        //        ChangePetFriendly(animal);
+        //        userEmployee.UpdateAnimal(animal);
+        //    }
+
+        //}
 
         public static Adoption UpdateAdoption(bool isAdopting, Adoption adoption)
         {
@@ -313,8 +364,6 @@ namespace HumaneSociety
 
             var animalUpdate = db.Animals.Where(a => a.AnimalId == animal.AnimalId).Single();
             
-
-            //throw new NotImplementedException();
         }
  
         public static Animal RemoveAnimal(Animal animalId)
@@ -323,21 +372,22 @@ namespace HumaneSociety
 
             Animal animal = db.Animals.Where(a => a.AnimalId != animalId.AnimalId).Single();
             return animalId;
-            //throw new NotImplementedException();
+            
         }
 
-        //public static Animal RemoveAnimalFromRoom(Animal animal)
+        //public static void RemoveAnimalFromRoom(Animal animal)
         //{
         //    HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
-        //    Animal animal = db.Animals.Where(r => r.AnimalId != animalId.AnimalId).Single();
-        //    return animal;
+        //    Room deleteRoom = db.Rooms.Where(r => r.AnimalId.Equals(animalId.AnimalId)).Single();
+        //    db.Rooms.DeleteOnSubmit(deleteRoom);
+        //    db.SubmitChanges();
         //}
 
-        public static int GetCategoryId(Animal animalName)
+        public static int GetCategoryId(string animalSpecies)
         {
-            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+            //HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
 
-            Category category = db.Categories.Where(c => c.Name == animalName.Name).Single();
+            Category category = db.Categories.Where(c => c.Name == animalSpecies).Single();
             return category.CategoryId;
         }
 

@@ -26,7 +26,7 @@ namespace HumaneSociety
         }
         protected override void RunUserMenus()
         {
-            List<string> options = new List<string>() { "What would you like to do? (select number of choice)", "1. Add animal", "2. Remove Anmial", "3. Check Animal Status",  "4. Approve Adoption" };
+            List<string> options = new List<string>() { "What would you like to do? (select number of choice)", "1. Add animal", "2. Remove Animal", "3. Check Animal Status",  "4. Approve Adoption" };
             UserInterface.DisplayUserOptions(options);
             string input = UserInterface.GetUserInput();
             RunUserInput(input);
@@ -249,7 +249,9 @@ namespace HumaneSociety
         {
             Console.Clear();
             Animal animal = new Animal();
-            animal.CategoryId = Query.GetCategoryId(animal);
+            Console.WriteLine("What is the animals species?");
+            
+            animal.CategoryId = Query.GetCategoryId(Console.ReadLine());
             animal.Name = UserInterface.GetStringData("name", "the animal's");
             animal.Age = UserInterface.GetIntegerData("age", "the animal's");
             animal.Demeanor = UserInterface.GetStringData("demeanor", "the animal's");
