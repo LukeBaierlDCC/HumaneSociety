@@ -138,9 +138,11 @@ namespace HumaneSociety
             Console.WriteLine("Enter [2] to search by the demeanor of the animal.");
             Console.WriteLine("Enter [3] to search by the gender of the animal.");
             Console.WriteLine("Enter [4] to search by the category of the animal.");
+            Console.WriteLine("Enter [5] to search for a pet friendly animal.");
+            Console.WriteLine("Enter [6] to search for a kid friendly animal.");
 
             List<string> userChoice = Console.ReadLine().Split(' ').ToList();
-            var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).ToList();
+            var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category && mt.PetFriendly == animal.PetFriendly && mt.KidFriendly == animal.KidFriendly).ToList();
             //List<Animal> animalsFound = new List<Animal>();
             foreach(string u in userChoice)
             {
@@ -169,8 +171,8 @@ namespace HumaneSociety
                         break;
 
                     case 3:
-                        Console.WriteLine("Enter the gender of the animal you are searching for: ");
-                        var animalGenderChoice = Console.ReadLine();
+                        Console.WriteLine("Enter the gender of the animal you are searching for: [M] or [F] ");
+                        var animalGenderChoice = Console.ReadLine().ToUpper();
 
                         var refinedGenderSearch = from animals in multipleTraits
                                                 where animal.Name == animalGenderChoice
@@ -186,6 +188,31 @@ namespace HumaneSociety
                                                 where animal.Name == animalCategoryChoice
                                                 select animal;
                         multipleTraits = refinedCategorySearch.ToList();
+                        break;
+
+                    case 5:
+                        Console.WriteLine("Are you looking for a pet friendly animal?: [Y] or [N] ");
+                        bool? animalPetFriendlyChoice = (Console.ReadLine().ToUpper() == "Y");
+
+                        var refinedPetFriendlySearch = from animals in multipleTraits
+                                                       where animal.PetFriendly == animalPetFriendlyChoice
+                                                       select animal;
+                        multipleTraits = refinedPetFriendlySearch.ToList();
+                        break;
+
+                    case 6:
+                        Console.WriteLine("Are you looking for a kid friendly animal?: [Y] or [N] ");
+                        bool? animalKidFriendlyChoice = (Console.ReadLine().ToUpper() == "Y");
+
+                        var refinedKidFriendlySearch = from animals in multipleTraits
+                                                       where animal.KidFriendly == animalKidFriendlyChoice
+                                                       select animal;
+                        multipleTraits = refinedKidFriendlySearch.ToList();
+                        break;
+
+                    default:
+                        Console.WriteLine("I'm sorry, that is an invalid response. Please select a valid trait to search for your animal by.");
+                        //SearchForAnimalByMultipleTraits();
                         break;
                 }
             }
