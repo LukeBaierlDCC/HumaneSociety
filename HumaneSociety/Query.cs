@@ -118,20 +118,20 @@ namespace HumaneSociety
         public static List<Adoption> GetPendingAdoptions(string pendingAdoption)
         {
             var adoptionPending = db.Adoptions.Where(pd => pd.ApprovalStatus == pendingAdoption).ToList();
-           return adoptionPending;
+            return adoptionPending;
             //throw new NotImplementedException();
         }
 
         public static Employee RunEmployeeQueries(Employee employee, string update)
         {
-            Employee employeeQueries = db.Employees.Where(eq => eq.EmployeeId == update).Single();
+            Employee employeeQueries = db.Employees.Where(eq => eq.EmployeeId == employee.EmployeeId).Single();
             return employeeQueries;
             //throw new NotImplementedException();
         }
                 
         public static List<Animal> SearchForAnimalByMultipleTraits(Animal animal)
         {
-            var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).ToList() ;
+            var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).ToList();
             //List<Animal> animalsFound = new List<Animal>();
 
             return multipleTraits;
@@ -177,10 +177,23 @@ namespace HumaneSociety
             //throw new NotImplementedException();
         }
 
-        public static Shot GetShots(Shot shot)
+        public static List<Shot> GetShots(Animal animal)
         {
-            var newShots = db.Shots.Where(s => s.ShotId == shot.ShotId).Single();
-            return newShots;
+            // getting rows from AnimalShots that pertain to our animal
+            var newShots = db.AnimalShots.Where(s => s.AnimalId == animal.AnimalId).ToList();
+
+            // get the shots from db.Shots that have an ShotId contained in "newShots"
+            var actualShots = db.AnimalId.Where(a => a.ShotId == ;
+
+
+
+            // .Contains example
+            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            List<int> oddNumbers = new List<int> { 1, 3, 5 };
+
+            var testQuery = numbers.Where(n => oddNumbers.Contains(n)).ToList();
+
+            return actualShots;
 
             //throw new NotImplementedException();
         }
@@ -190,9 +203,9 @@ namespace HumaneSociety
             return room;
         }
 
-        public static Shot UpdateShot(Shot shot)
+        public static Shot UpdateShot(string booster, Animal animal)
         {
-            Shot shotUpdate = db.Shots.Where(s => s.ShotId == shot.ShotId).Single();
+            Shot shotUpdate = db.Shots.Where(s => s.Name == booster).Single();
             return shotUpdate;
             //throw new NotImplementedException();
         }

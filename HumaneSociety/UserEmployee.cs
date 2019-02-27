@@ -156,9 +156,10 @@ namespace HumaneSociety
         }
         private void CheckShots(Animal animal)
         {
+            //Console.Clear();
             List<string> shotInfo = new List<string>();
             var shots = Query.GetShots(animal);
-            foreach (var shot in shotInfo)
+            foreach (var shot in shots)
             {
                 shotInfo.Add($"{shot.Shot.Name} Date: {shot.DateReceived}");
             }
@@ -220,8 +221,9 @@ namespace HumaneSociety
         }       
 
         private void RemoveAnimal()
-        {            
-            var animals = Query.SearchForAnimalByMultipleTraits().ToList();
+        {
+            Animal animal = new Animal();
+            var animals = Query.SearchForAnimalByMultipleTraits(animal).ToList();
             if (animals.Count > 1)
             {
                 UserInterface.DisplayUserOptions("Several animals found please refine your search.");
@@ -235,7 +237,7 @@ namespace HumaneSociety
                 UserInterface.DisplayUserOptions("Animal not found please use different search criteria");
                 return;
             }
-            var animal = animals[0];
+            animal = animals[0];
             List<string> options = new List<string>() { "Animal found:", animal.Name, animal.Category.Name, "would you like to delete?" };
             if ((bool)UserInterface.GetBitData(options))
             {
