@@ -75,7 +75,7 @@ namespace HumaneSociety
 
         internal static void UpdateClient(Client clientWithUpdates)
         {
-            
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
 
             // find corresponding Client from Db
             Client clientFromDb = db.Clients.Where(c => c.ClientId == clientWithUpdates.ClientId).Single();
@@ -117,6 +117,8 @@ namespace HumaneSociety
 
         public static List<Adoption> GetPendingAdoptions(string pendingAdoption)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             var adoptionPending = db.Adoptions.Where(pd => pd.ApprovalStatus == pendingAdoption).ToList();
             return adoptionPending;
             //throw new NotImplementedException();
@@ -223,6 +225,8 @@ namespace HumaneSociety
 
         public static Adoption UpdateAdoption(bool isAdopting, Adoption adoption)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).Single();
             //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).SingleOrDefault();
             //Adoption adoptionUpdate = db.Adoptions.Where(a => a.AdoptionId == adoption.AdoptionId).First();
@@ -245,6 +249,8 @@ namespace HumaneSociety
 
         public static Animal GetAnimalByID(int id)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Animal myAnimal = db.Animals.Where(s => s.AnimalId == id).Single();
             return myAnimal;
         }
@@ -256,6 +262,8 @@ namespace HumaneSociety
 
         public static void Adopt(Animal animal, Client client)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Adoption adoptNew = db.Adoptions.Where(a => a.AnimalId == animal.AnimalId).Single();
             adoptNew.ClientId = client.ClientId;
             //throw new NotImplementedException();
@@ -263,6 +271,7 @@ namespace HumaneSociety
 
         public static List<AnimalShot> GetShots(Animal animal)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
             // getting rows from AnimalShots that pertain to our animal
             var newShots = db.AnimalShots.Where(s => s.AnimalId == animal.AnimalId).ToList();
 
@@ -283,12 +292,16 @@ namespace HumaneSociety
         }
         public static Room GetRoom(int animalId)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Room room = db.Rooms.Where(r=> r.AnimalId == animalId).Single();
             return room;
         }
 
         public static Shot UpdateShot(string booster, Animal animal)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Shot shotUpdate = db.Shots.Where(s => s.Name == booster).Single();
             return shotUpdate;
             //throw new NotImplementedException();
@@ -296,6 +309,8 @@ namespace HumaneSociety
 
         public static void EnterAnimalUpdate(Animal animal, Dictionary<int, string> updates)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             var animalUpdate = db.Animals.Where(a => a.AnimalId == animal.AnimalId).Single();
             
 
@@ -304,6 +319,8 @@ namespace HumaneSociety
  
         public static Animal RemoveAnimal(Animal animalId)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Animal animal = db.Animals.Where(a => a.AnimalId != animalId.AnimalId).Single();
             return animalId;
             //throw new NotImplementedException();
@@ -311,12 +328,16 @@ namespace HumaneSociety
 
         public static int GetCategoryId(Animal animalName)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             Category category = db.Categories.Where(c => c.Name == animalName.Name).Single();
             return category.CategoryId;
         }
 
         public static int GetDietPlanId(Animal animalDietPlan)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
             DietPlan diet = db.DietPlans.Where(d => d.DietPlanId == animalDietPlan.DietPlanId).Single();
             //table, variable, = -----------------------------------our own name...of type----number of items
             return diet.DietPlanId;
