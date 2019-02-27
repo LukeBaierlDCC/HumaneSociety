@@ -131,12 +131,65 @@ namespace HumaneSociety
                 
         public static List<Animal> SearchForAnimalByMultipleTraits(Animal animal)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+
+            Console.WriteLine("What trait would you like to search for your animal by?");
+            Console.WriteLine("Enter [1] to search by the name of the animal.");
+            Console.WriteLine("Enter [2] to search by the demeanor of the animal.");
+            Console.WriteLine("Enter [3] to search by the gender of the animal.");
+            Console.WriteLine("Enter [4] to search by the category of the animal.");
+
+            List<string> userChoice = Console.ReadLine().Split(' ').ToList();
             var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).ToList();
             //List<Animal> animalsFound = new List<Animal>();
-            //foreach ()
-            //{
-            //    animal = name;
-            //}
+            foreach(string u in userChoice)
+            {
+                int searchCriteria = int.Parse(u);
+
+                switch (searchCriteria)
+                {
+                    case 1:
+                        Console.WriteLine("Enter the name of the animal you are searching for: ");
+                        var animalNameChoice = Console.ReadLine();
+
+                        var refinedNameSearch = from animals in multipleTraits
+                                                where animal.Name == animalNameChoice
+                                                select animal;
+                        multipleTraits = refinedNameSearch.ToList();
+                        break;
+
+                    case 2:
+                        Console.WriteLine("Enter the demeanor of the animal you are searching for: ");
+                        var animalDemeanorChoice = Console.ReadLine();
+
+                        var refinedDemeanorSearch = from animals in multipleTraits
+                                                where animal.Name == animalDemeanorChoice
+                                                select animal;
+                        multipleTraits = refinedDemeanorSearch.ToList();
+                        break;
+
+                    case 3:
+                        Console.WriteLine("Enter the gender of the animal you are searching for: ");
+                        var animalGenderChoice = Console.ReadLine();
+
+                        var refinedGenderSearch = from animals in multipleTraits
+                                                where animal.Name == animalGenderChoice
+                                                select animal;
+                        multipleTraits = refinedGenderSearch.ToList();
+                        break;
+
+                    case 4:
+                        Console.WriteLine("Enter the category of the animal you are searching for: ");
+                        var animalCategoryChoice = Console.ReadLine();
+
+                        var refinedCategorySearch = from animals in multipleTraits
+                                                where animal.Name == animalCategoryChoice
+                                                select animal;
+                        multipleTraits = refinedCategorySearch.ToList();
+                        break;
+                }
+            }
+            
 
             return multipleTraits;
         }
