@@ -301,7 +301,7 @@ namespace HumaneSociety
         public static Shot UpdateShot(string booster, Animal animal)
         {
             HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
-
+            //UserInterface.DisplayShot();
             Shot shotUpdate = db.Shots.Where(s => s.Name == booster).Single();
             return shotUpdate;
             //throw new NotImplementedException();
@@ -325,6 +325,13 @@ namespace HumaneSociety
             return animalId;
             //throw new NotImplementedException();
         }
+
+        //public static Animal RemoveAnimalFromRoom(Animal animal)
+        //{
+        //    HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
+        //    Animal animal = db.Animals.Where(r => r.AnimalId != animalId.AnimalId).Single();
+        //    return animal;
+        //}
 
         public static int GetCategoryId(Animal animalName)
         {
