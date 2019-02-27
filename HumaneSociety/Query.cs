@@ -133,6 +133,10 @@ namespace HumaneSociety
         {
             var multipleTraits = db.Animals.Where(mt => mt.Name == animal.Name && mt.Demeanor == animal.Demeanor && mt.Gender == animal.Gender && mt.Category == animal.Category).ToList();
             //List<Animal> animalsFound = new List<Animal>();
+            //foreach ()
+            //{
+            //    animal = name;
+            //}
 
             return multipleTraits;
         }
@@ -240,7 +244,9 @@ namespace HumaneSociety
 
         public static int AddAnimal(Animal animalId)
         {
+            HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
             Animal animal = db.Animals.Where(a => a.AnimalId == animalId.AnimalId).Single();
+
             return animal.AnimalId;
         }
         internal static Employee RetrieveEmployeeUser(string email, int employeeNumber)
