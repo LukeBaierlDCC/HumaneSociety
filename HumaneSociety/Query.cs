@@ -177,23 +177,23 @@ namespace HumaneSociety
             //throw new NotImplementedException();
         }
 
-        public static List<Shot> GetShots(Animal animal)
+        public static List<AnimalShot> GetShots(Animal animal)
         {
             // getting rows from AnimalShots that pertain to our animal
             var newShots = db.AnimalShots.Where(s => s.AnimalId == animal.AnimalId).ToList();
 
             // get the shots from db.Shots that have an ShotId contained in "newShots"
-            var actualShots = db.AnimalId.Where(a => a.ShotId == ;
+            return newShots;
 
 
 
             // .Contains example
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
-            List<int> oddNumbers = new List<int> { 1, 3, 5 };
+            //List<int> numbers = new List<int> { 1, 2, 3, 4, 5 };
+            //List<int> oddNumbers = new List<int> { 1, 3, 5 };
 
-            var testQuery = numbers.Where(n => oddNumbers.Contains(n)).ToList();
+            //var testQuery = numbers.Where(n => oddNumbers.Contains(n)).ToList();
 
-            return actualShots;
+            //return actualShots;
 
             //throw new NotImplementedException();
         }
