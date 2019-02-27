@@ -391,11 +391,11 @@ namespace HumaneSociety
             return category.CategoryId;
         }
 
-        public static int GetDietPlanId(Animal animalDietPlan)
+        public static int GetDietPlanId(string animalSpecies)
         {
             HumaneSocietyDCCDataContext db = new HumaneSocietyDCCDataContext();
 
-            DietPlan diet = db.DietPlans.Where(d => d.DietPlanId == animalDietPlan.DietPlanId).Single();
+            DietPlan diet = db.DietPlans.Where(d => d.Name == animalSpecies).Single();
             //table, variable, = -----------------------------------our own name...of type----number of items
             return diet.DietPlanId;
         }
